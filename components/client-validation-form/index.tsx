@@ -1,6 +1,5 @@
 'use client';
 
-import { handleSignup } from '@/app/actions/auth';
 import { AuthFormType } from '@/app/types/auth';
 import { Form, FormControl, FormField, FormItem, FormMessage } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
@@ -9,6 +8,7 @@ import { useTransition } from 'react';
 import { useForm } from 'react-hook-form';
 import { Button } from '@/components/ui/button';
 import { formSchema } from './schema';
+import { handleAction } from './action';
 
 export default function AuthForm() {
   const form = useForm<AuthFormType>({
@@ -26,12 +26,12 @@ export default function AuthForm() {
     data.append('name', formData.name);
 
     startTransition(async () => {
-      await handleSignup(data);
+      await handleAction(data);
     });
   };
   return (
     <div className="flex w-full flex-col gap-7">
-      <h2 className="text-4xl">Form</h2>
+      <h2 className="text-4xl">ClientValidationForm</h2>
       <Form {...form}>
         <form className="space-y-4" onSubmit={(...args) => form.handleSubmit(onSubmit)(...args)}>
           <FormField
