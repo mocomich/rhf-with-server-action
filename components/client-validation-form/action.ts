@@ -1,3 +1,5 @@
+'use server';
+
 import { FormState } from './type';
 
 export async function handleAction(formData: FormData): Promise<FormState> {
