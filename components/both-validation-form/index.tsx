@@ -1,6 +1,5 @@
 'use client';
 
-import { AuthFormType } from '@/app/types/auth';
 import { Form, FormControl, FormField, FormItem, FormMessage } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
 import { useFormState } from 'react-dom';
@@ -10,9 +9,10 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { formSchema } from './schema';
 import { Button } from '../ui/button';
 import { useTransition } from 'react';
+import { FormType } from './type';
 
 export default function AuthForm() {
-  const form = useForm<AuthFormType>({
+  const form = useForm<FormType>({
     resolver: zodResolver(formSchema),
     defaultValues: {
       email: '',
@@ -25,7 +25,7 @@ export default function AuthForm() {
     status: 'idle',
   });
 
-  const onSubmit = async (formData: AuthFormType) => {
+  const onSubmit = async (formData: FormType) => {
     const data = new FormData();
     data.append('email', formData.email);
     data.append('name', formData.name);

@@ -1,3 +1,6 @@
+import { z } from 'zod';
+import { formSchema } from './schema';
+
 export type FormState =
   | {
       status: 'success';
@@ -13,3 +16,5 @@ export type FormState =
   | {
       status: 'idle';
     };
+
+export type FormType = z.infer<typeof formSchema>;
